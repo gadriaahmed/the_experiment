@@ -227,10 +227,10 @@
       "LANDING PAGE: −22.4% BOUNCE",
       "STAT SIG: 97.3% CONFIDENCE",
       "PAID TRAFFIC: −31.0% CAC",
-      "HYPOTHESIS KILLED: H-014"
+      "HYPOTHESIS TESTED: H-014"
     ],
     "liveTickerTemplate": "[ A/B TEST RUNNING: +{metric}% CVR ]",
-    "headline": "WE [[KILL]] HYPOTHESES.\nWE [[GROW]] REVENUE.",
+    "headline": "WE [[TEST]] HYPOTHESES.\nWE [[GROW]] REVENUE.",
     "secondaryCtaLabel": "Read the manifesto",
     "primaryCtaHref": "#audit",
     "posterWord1": "TEST",
