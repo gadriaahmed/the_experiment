@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { JetBrains_Mono, Manrope, Syne } from "next/font/google";
 import "./globals.css";
 import { CustomCursor } from "@/components/CustomCursor";
+import { getHomepageContent } from "@/lib/home";
 
 const syne = Syne({
   variable: "--font-syne",
@@ -21,14 +23,14 @@ const jetbrains = JetBrains_Mono({
   weight: ["400", "500", "700"],
 });
 
+const homepage = getHomepageContent();
+
 export const metadata: Metadata = {
-  title: "The Experiment — CRO Consultancy",
-  description:
-    "We kill hypotheses. We grow revenue. A conversion rate optimisation laboratory that treats your digital product like an experiment — data over opinion, statistically significant growth over artistic preferences.",
+  title: homepage.seo.title,
+  description: homepage.seo.description,
   openGraph: {
-    title: "The Experiment — CRO Consultancy",
-    description:
-      "Most websites look pretty and convert terribly. We run the lab that fixes that.",
+    title: homepage.seo.title,
+    description: homepage.seo.ogDescription,
     type: "website",
   },
 };
@@ -45,11 +47,27 @@ export default function RootLayout({
     >
       <body className="min-h-full bg-void text-paper">
         <a href="#main-content" className="skip-link">
-          Skip to main content
+          {homepage.skipLink}
         </a>
         <div className="grain" aria-hidden="true" />
         <CustomCursor />
         {children}
+        {/*
+          Invite / password-reset / confirmation links from Netlify Identity
+          land on the site root, not /admin/. Only /admin/index.html loads
+          the Identity widget, so this same-origin redirect preserves the
+          hash token without putting the widget on public pages.
+        */}
+        <Script id="netlify-identity-redirect" strategy="beforeInteractive">
+          {`
+            (function () {
+              var hash = window.location.hash;
+              if (/^#(invite_token|recovery_token|confirmation_token)=/.test(hash)) {
+                window.location.replace("/admin/" + hash);
+              }
+            })();
+          `}
+        </Script>
       </body>
     </html>
   );

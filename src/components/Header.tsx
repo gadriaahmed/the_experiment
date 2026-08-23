@@ -2,15 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { MagneticButton } from "./MagneticButton";
+import type { HeaderContent } from "@/lib/content-types";
 
-const LINKS = [
-  { href: "#manifesto", label: "Manifesto" },
-  { href: "#method", label: "Method" },
-  { href: "#results", label: "Results" },
-  { href: "#audit", label: "Audit" },
-];
-
-export function Header() {
+export function Header({ content }: { content: HeaderContent }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -31,14 +25,14 @@ export function Header() {
         <a
           href="#main-content"
           className="mono text-[13px] tracking-[0.22em] uppercase text-paper"
-          aria-label="The Experiment home"
+          aria-label={content.logoAriaLabel}
         >
-          THE_EXPERIMENT
+          {content.logo}
         </a>
 
-        <nav aria-label="Primary" className="hidden md:block">
+        <nav aria-label={content.navAriaLabel} className="hidden md:block">
           <ul className="flex items-center gap-1 rounded-full border border-line bg-void/70 px-2 py-1">
-            {LINKS.map((l) => (
+            {content.nav.map((l) => (
               <li key={l.href}>
                 <a
                   href={l.href}
@@ -53,14 +47,14 @@ export function Header() {
 
         <div className="flex items-center gap-3">
           <div className="hidden sm:block">
-            <MagneticButton href="#audit">Start An Experiment</MagneticButton>
+            <MagneticButton href={content.ctaHref}>{content.ctaLabel}</MagneticButton>
           </div>
           <button
             type="button"
             className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 border border-line md:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
-            aria-label={open ? "Close menu" : "Open menu"}
+            aria-label={open ? content.closeMenuLabel : content.openMenuLabel}
             onClick={() => setOpen((v) => !v)}
           >
             <span className="block h-px w-5 bg-paper" />
@@ -71,9 +65,13 @@ export function Header() {
       </div>
 
       {open ? (
-        <nav id="mobile-nav" aria-label="Mobile" className="border-t border-line bg-void px-4 py-4 md:hidden">
+        <nav
+          id="mobile-nav"
+          aria-label={content.mobileNavAriaLabel}
+          className="border-t border-line bg-void px-4 py-4 md:hidden"
+        >
           <ul className="flex flex-col gap-2">
-            {LINKS.map((l) => (
+            {content.nav.map((l) => (
               <li key={l.href}>
                 <a
                   href={l.href}
@@ -86,11 +84,11 @@ export function Header() {
             ))}
             <li>
               <a
-                href="#audit"
+                href={content.ctaHref}
                 className="mono block bg-hot px-4 py-3 text-center text-xs tracking-[0.16em] uppercase text-white"
                 onClick={() => setOpen(false)}
               >
-                Start An Experiment
+                {content.ctaLabel}
               </a>
             </li>
           </ul>

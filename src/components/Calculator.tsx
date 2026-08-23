@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
+import type { CalculatorContent } from "@/lib/content-types";
 
 function money(n: number) {
   return new Intl.NumberFormat("en-GB", {
@@ -15,7 +16,7 @@ function compact(n: number) {
   return new Intl.NumberFormat("en-GB", { notation: "compact", maximumFractionDigits: 1 }).format(n);
 }
 
-export function Calculator() {
+export function Calculator({ content }: { content: CalculatorContent }) {
   const [traffic, setTraffic] = useState(120000);
   const [cvr, setCvr] = useState(2.4);
   const [aov, setAov] = useState(86);
@@ -28,19 +29,16 @@ export function Calculator() {
   }, [traffic, cvr, aov]);
 
   return (
-    <section id="calculator" className="border-b border-line bg-void">
+    <section id={content.id} className="border-b border-line bg-void">
       <div className="mx-auto max-w-[1440px] px-4 py-16 md:px-10 md:py-24">
         <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="mono text-[10px] tracking-[0.28em] text-lime uppercase">02 // Simulator</p>
+            <p className="mono text-[10px] tracking-[0.28em] text-lime uppercase">{content.eyebrow}</p>
             <h2 className="display mt-4 max-w-3xl text-[clamp(2.2rem,5vw,4.4rem)]">
-              Run the numbers before you run the test.
+              {content.title}
             </h2>
           </div>
-          <p className="max-w-md text-mute-on-dark">
-            Drag the sliders. A 15–30% conversion lift is the band we routinely hunt.
-            No email gate. No theatre. Just the maths.
-          </p>
+          <p className="max-w-md text-mute-on-dark">{content.lead}</p>
         </div>
 
         <motion.div
@@ -51,15 +49,15 @@ export function Calculator() {
         >
           <div className="flex items-center justify-between border-b border-line px-4 py-3">
             <p className="mono text-[10px] tracking-[0.2em] text-lime uppercase">
-              root@lab:~$ simulate --lift 0.15:0.30
+              {content.prompt}
             </p>
-            <span className="mono text-[10px] text-mute-on-dark">LIVE_SESSION</span>
+            <span className="mono text-[10px] text-mute-on-dark">{content.sessionLabel}</span>
           </div>
 
           <div className="grid lg:grid-cols-2">
             <div className="space-y-10 border-b border-line p-6 md:p-10 lg:border-r lg:border-b-0">
               <Slider
-                label="Monthly Traffic"
+                label={content.trafficLabel}
                 value={traffic}
                 min={10000}
                 max={2000000}
@@ -68,7 +66,7 @@ export function Calculator() {
                 onChange={setTraffic}
               />
               <Slider
-                label="Current Conversion Rate"
+                label={content.cvrLabel}
                 value={cvr}
                 min={0.4}
                 max={12}
@@ -77,7 +75,7 @@ export function Calculator() {
                 onChange={setCvr}
               />
               <Slider
-                label="Average Order Value"
+                label={content.aovLabel}
                 value={aov}
                 min={12}
                 max={480}
@@ -88,15 +86,15 @@ export function Calculator() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1">
-              <Stat label="Current monthly revenue" value={money(math.baseline)} />
+              <Stat label={content.baselineLabel} value={money(math.baseline)} />
               <Stat
-                label="+15% optimisation"
+                label={content.lift15Label}
                 value={money(math.lift15)}
                 delta={`+${money(math.delta15)} / mo`}
                 accent="lime"
               />
               <Stat
-                label="+30% optimisation"
+                label={content.lift30Label}
                 value={money(math.lift30)}
                 delta={`+${money(math.delta30)} / mo`}
                 accent="hot"

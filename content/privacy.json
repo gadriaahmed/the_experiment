@@ -1,0 +1,16 @@
+{
+  "seo": {
+    "title": "Privacy — The Experiment",
+    "description": "How The Experiment handles the details you send us.",
+    "ogDescription": "How The Experiment handles the details you send us."
+  },
+  "eyebrow": "Legal",
+  "title": "Privacy",
+  "paragraphs": [
+    "We do not sell your information. Audit requests (URL, traffic, email, bottleneck) are used to reply to you and to decide if we are the right lab. That is it.",
+    "This site does not run advertising pixels. If we add analytics later, it will be first-party and documented here — not slipped in as consent theatre."
+  ],
+  "email": "lab@theexperiment.studio",
+  "backLabel": "← Back to the lab",
+  "backHref": "/"
+}

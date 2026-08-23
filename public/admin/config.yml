@@ -1,0 +1,296 @@
+# Decap CMS (git-backed CMS) — configuration.
+#
+# The editorial UI runs at /admin and writes commits into `content/`.
+# Next.js pages read the same files at build / request time via
+# `src/lib/read-content.ts`. A save in /admin appears on the site
+# after the next Netlify build.
+#
+# One-time Netlify setup (dashboard):
+#   1. Enable Identity (Site settings → Identity → Enable Identity).
+#   2. Enable Git Gateway (Site settings → Identity → Services →
+#      Git Gateway) so editors do not need their own GitHub access.
+#   3. Set Identity → Registration to "Invite only" and invite editors.
+
+backend:
+  name: git-gateway
+  branch: main
+
+# Direct commits — no draft → review → publish workflow.
+publish_mode: simple
+
+# Enables the local git proxy on localhost (`npm run cms`). Ignored in production.
+local_backend: true
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+locale: "en"
+
+collections:
+  - name: "homepage"
+    label: "Homepage"
+    description: "All copy on the homepage (/)."
+    files:
+      - file: "content/homepage.json"
+        name: "homepage"
+        label: "Homepage — copy"
+        fields:
+          - label: "SEO"
+            name: "seo"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Open Graph description", name: "ogDescription", widget: "text" }
+
+          - { label: "Skip link", name: "skipLink", widget: "string" }
+
+          - label: "Header"
+            name: "header"
+            widget: "object"
+            fields:
+              - { label: "Logo text", name: "logo", widget: "string" }
+              - { label: "Logo aria-label", name: "logoAriaLabel", widget: "string" }
+              - { label: "Nav aria-label", name: "navAriaLabel", widget: "string" }
+              - { label: "Mobile nav aria-label", name: "mobileNavAriaLabel", widget: "string" }
+              - { label: "Open menu label", name: "openMenuLabel", widget: "string" }
+              - { label: "Close menu label", name: "closeMenuLabel", widget: "string" }
+              - { label: "CTA label", name: "ctaLabel", widget: "string" }
+              - { label: "CTA href", name: "ctaHref", widget: "string" }
+              - label: "Nav links"
+                name: "nav"
+                widget: "list"
+                summary: "{{fields.label}}"
+                fields:
+                  - { label: "Href", name: "href", widget: "string" }
+                  - { label: "Label", name: "label", widget: "string" }
+
+          - label: "Hero"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Poster word 1", name: "posterWord1", widget: "string" }
+              - { label: "Poster word 2", name: "posterWord2", widget: "string" }
+              - { label: "Poster status", name: "posterStatus", widget: "string" }
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - label: "Headline"
+                name: "headline"
+                widget: "text"
+                hint: "Use [[word]] to paint a word in the accent colour. Use a line break for the second line."
+              - { label: "Lead", name: "lead", widget: "text" }
+              - { label: "Primary CTA label", name: "primaryCtaLabel", widget: "string" }
+              - { label: "Primary CTA href", name: "primaryCtaHref", widget: "string" }
+              - { label: "Secondary CTA label", name: "secondaryCtaLabel", widget: "string" }
+              - { label: "Secondary CTA href", name: "secondaryCtaHref", widget: "string" }
+              - label: "Ticker lines"
+                name: "ticker"
+                widget: "list"
+                field: { label: "Line", name: "line", widget: "string" }
+              - label: "Live ticker template"
+                name: "liveTickerTemplate"
+                widget: "string"
+                hint: "Use {metric} for the live fluctuating number."
+
+          - label: "Manifesto"
+            name: "manifesto"
+            widget: "object"
+            fields:
+              - { label: "Section id", name: "id", widget: "string" }
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Title", name: "title", widget: "text", hint: "[[word]] = accent." }
+              - label: "Paragraphs"
+                name: "paragraphs"
+                widget: "list"
+                field: { label: "Paragraph", name: "paragraph", widget: "text" }
+              - { label: "Closer", name: "closer", widget: "text" }
+
+          - label: "Principles"
+            name: "principles"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Title", name: "title", widget: "text", hint: "[[word]] = accent." }
+              - label: "Items"
+                name: "items"
+                widget: "list"
+                summary: "{{fields.title}}"
+                fields:
+                  - label: "Icon"
+                    name: "icon"
+                    widget: "select"
+                    options: ["microscope", "ban", "shield-off"]
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Body", name: "body", widget: "text" }
+
+          - label: "Calculator"
+            name: "calculator"
+            widget: "object"
+            fields:
+              - { label: "Section id", name: "id", widget: "string" }
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Lead", name: "lead", widget: "text" }
+              - { label: "Terminal prompt", name: "prompt", widget: "string" }
+              - { label: "Session label", name: "sessionLabel", widget: "string" }
+              - { label: "Traffic label", name: "trafficLabel", widget: "string" }
+              - { label: "CVR label", name: "cvrLabel", widget: "string" }
+              - { label: "AOV label", name: "aovLabel", widget: "string" }
+              - { label: "Baseline label", name: "baselineLabel", widget: "string" }
+              - { label: "+15% label", name: "lift15Label", widget: "string" }
+              - { label: "+30% label", name: "lift30Label", widget: "string" }
+
+          - label: "Method"
+            name: "method"
+            widget: "object"
+            fields:
+              - { label: "Section id", name: "id", widget: "string" }
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Title", name: "title", widget: "text", hint: "[[word]] = accent." }
+              - { label: "Lead", name: "lead", widget: "text" }
+              - { label: "Open hint", name: "openHint", widget: "string" }
+              - label: "Steps"
+                name: "steps"
+                widget: "list"
+                summary: "{{fields.id}} — {{fields.title}}"
+                fields:
+                  - { label: "Id", name: "id", widget: "string" }
+                  - label: "Icon"
+                    name: "icon"
+                    widget: "select"
+                    options: ["activity", "flask-conical", "split", "repeat"]
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Blurb", name: "blurb", widget: "text" }
+                  - { label: "Body", name: "body", widget: "text" }
+                  - label: "Items"
+                    name: "items"
+                    widget: "list"
+                    field: { label: "Item", name: "item", widget: "string" }
+
+          - label: "Case studies"
+            name: "caseStudies"
+            widget: "object"
+            fields:
+              - { label: "Section id", name: "id", widget: "string" }
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Title", name: "title", widget: "text", hint: "[[word]] = accent." }
+              - { label: "Lead", name: "lead", widget: "text" }
+              - label: "Studies"
+                name: "studies"
+                widget: "list"
+                summary: "{{fields.brand}} — {{fields.metric}}"
+                fields:
+                  - { label: "Brand", name: "brand", widget: "string" }
+                  - { label: "Sector", name: "sector", widget: "string" }
+                  - { label: "Metric", name: "metric", widget: "string" }
+                  - { label: "Unit", name: "unit", widget: "string" }
+                  - label: "Before"
+                    name: "before"
+                    widget: "object"
+                    fields:
+                      - { label: "Label", name: "label", widget: "string" }
+                      - label: "Items"
+                        name: "items"
+                        widget: "list"
+                        field: { label: "Item", name: "item", widget: "string" }
+                  - label: "After"
+                    name: "after"
+                    widget: "object"
+                    fields:
+                      - { label: "Label", name: "label", widget: "string" }
+                      - label: "Items"
+                        name: "items"
+                        widget: "list"
+                        field: { label: "Item", name: "item", widget: "string" }
+                  - { label: "Note", name: "note", widget: "text" }
+
+          - label: "Straight talk (FAQ)"
+            name: "straightTalk"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Title", name: "title", widget: "text", hint: "[[word]] = accent." }
+              - { label: "Lead", name: "lead", widget: "text" }
+              - label: "FAQs"
+                name: "faqs"
+                widget: "list"
+                summary: "{{fields.q}}"
+                fields:
+                  - { label: "Question", name: "q", widget: "string" }
+                  - { label: "Answer", name: "a", widget: "text" }
+
+          - label: "Audit form"
+            name: "audit"
+            widget: "object"
+            fields:
+              - { label: "Section id", name: "id", widget: "string" }
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Lead", name: "lead", widget: "text" }
+              - { label: "Terminal prompt", name: "prompt", widget: "string" }
+              - { label: "Bottleneck label", name: "bottleneckLabel", widget: "string" }
+              - { label: "Bottleneck placeholder", name: "bottleneckPlaceholder", widget: "string" }
+              - label: "Bottlenecks"
+                name: "bottlenecks"
+                widget: "list"
+                field: { label: "Option", name: "option", widget: "string" }
+              - { label: "Submit label", name: "submitLabel", widget: "string" }
+              - { label: "Success message", name: "success", widget: "text" }
+              - label: "Fields"
+                name: "fields"
+                widget: "list"
+                summary: "{{fields.label}}"
+                fields:
+                  - { label: "Id", name: "id", widget: "string" }
+                  - { label: "Label", name: "label", widget: "string" }
+                  - { label: "Name", name: "name", widget: "string" }
+                  - { label: "Type", name: "type", widget: "string" }
+                  - { label: "Placeholder", name: "placeholder", widget: "string" }
+                  - { label: "Autocomplete", name: "autoComplete", widget: "string", required: false }
+
+          - label: "Footer"
+            name: "footer"
+            widget: "object"
+            fields:
+              - label: "Marquee"
+                name: "marquee"
+                widget: "list"
+                field: { label: "Line", name: "line", widget: "string" }
+              - { label: "Tagline", name: "tagline", widget: "text", hint: "[[word]] = accent." }
+              - { label: "Clock label", name: "clockLabel", widget: "string" }
+              - { label: "Legal label", name: "legalLabel", widget: "string" }
+              - { label: "Privacy label", name: "privacyLabel", widget: "string" }
+              - { label: "Privacy href", name: "privacyHref", widget: "string" }
+              - { label: "Social label", name: "socialLabel", widget: "string" }
+              - label: "Socials"
+                name: "socials"
+                widget: "list"
+                summary: "{{fields.label}}"
+                fields:
+                  - { label: "Label", name: "label", widget: "string" }
+                  - { label: "Href", name: "href", widget: "string" }
+              - { label: "Wordmark", name: "wordmark", widget: "string" }
+
+  - name: "privacy"
+    label: "Privacy"
+    description: "Copy on /privacy."
+    files:
+      - file: "content/privacy.json"
+        name: "privacy"
+        label: "Privacy — copy"
+        fields:
+          - label: "SEO"
+            name: "seo"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Open Graph description", name: "ogDescription", widget: "text" }
+          - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+          - { label: "Title", name: "title", widget: "string" }
+          - label: "Paragraphs"
+            name: "paragraphs"
+            widget: "list"
+            field: { label: "Paragraph", name: "paragraph", widget: "text" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Back label", name: "backLabel", widget: "string" }
+          - { label: "Back href", name: "backHref", widget: "string" }

@@ -2,59 +2,25 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { withAccent } from "@/lib/accent";
+import type { CaseStudiesContent, CaseStudy } from "@/lib/content-types";
 
-const STUDIES = [
-  {
-    brand: "Brand X",
-    sector: "Retail checkout",
-    metric: "+42%",
-    unit: "Paid conversion",
-    before: {
-      label: "Control",
-      items: ["4-step checkout", "Guest path buried", "Form errors after submit", "2.1% paid CVR"],
-    },
-    after: {
-      label: "Winner",
-      items: ["Single-page checkout", "Guest first", "Inline validation", "3.0% paid CVR"],
-    },
-    note: "Redesigned checkout flow. Hypothesis: reduce steps and expose guest checkout. Result: +42% lift in paid conversion. Fake urgency was not part of the variant.",
-  },
-  {
-    brand: "Brand Y",
-    sector: "High-intent landing",
-    metric: "−30%",
-    unit: "Customer acquisition cost",
-    before: {
-      label: "Control",
-      items: ["Generic campaign LP", "Hero slideshow", "Trust proof below fold", "CAC £64"],
-    },
-    after: {
-      label: "Winner",
-      items: ["Intent-matched copy", "Static proof-first hero", "Offer clarity in 4 seconds", "CAC £45"],
-    },
-    note: "High-intent landing page overhaul. Hypothesis: match message to keyword and kill the carousel. Result: −30% CAC. Same media spend. Better users, not cheaper tricks.",
-  },
-];
-
-export function CaseStudies() {
+export function CaseStudies({ content }: { content: CaseStudiesContent }) {
   return (
-    <section id="results" className="border-b border-line bg-cream text-ink">
+    <section id={content.id} className="border-b border-line bg-cream text-ink">
       <div className="mx-auto max-w-[1440px] px-4 py-16 md:px-10 md:py-24">
         <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="mono text-[10px] tracking-[0.28em] text-hot-deep uppercase">04 // Lab results</p>
+            <p className="mono text-[10px] tracking-[0.28em] text-hot-deep uppercase">{content.eyebrow}</p>
             <h2 className="display mt-4 text-[clamp(2.2rem,5vw,4.6rem)]">
-              Before. After. <span className="text-hot-deep">Evidence.</span>
+              {withAccent(content.title, "text-hot-deep")}
             </h2>
           </div>
-          <p className="max-w-md text-mute">
-            Interactive toggles. Real conversion experiments. No vanity screenshots,
-            no &quot;we increased engagement&quot; fog.
-          </p>
+          <p className="max-w-md text-mute">{content.lead}</p>
         </div>
 
         <div className="grid gap-6 lg:grid-cols-2">
-          {STUDIES.map((study) => (
+          {content.studies.map((study) => (
             <StudyCard key={study.brand} study={study} />
           ))}
         </div>
@@ -63,7 +29,7 @@ export function CaseStudies() {
   );
 }
 
-function StudyCard({ study }: { study: (typeof STUDIES)[number] }) {
+function StudyCard({ study }: { study: CaseStudy }) {
   const [side, setSide] = useState<"before" | "after">("after");
   const view = side === "before" ? study.before : study.after;
 

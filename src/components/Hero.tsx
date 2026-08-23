@@ -4,17 +4,10 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { MagneticButton } from "./MagneticButton";
 import { Marquee } from "./Marquee";
+import { withAccentLines } from "@/lib/accent";
+import type { HeroContent } from "@/lib/content-types";
 
-const TICKER = [
-  "A/B TEST RUNNING: +24.8% CVR",
-  "CHECKOUT VARIANT B: +18.2% RPV",
-  "LANDING PAGE: −22.4% BOUNCE",
-  "STAT SIG: 97.3% CONFIDENCE",
-  "PAID TRAFFIC: −31.0% CAC",
-  "HYPOTHESIS KILLED: H-014",
-];
-
-export function Hero() {
+export function Hero({ content }: { content: HeroContent }) {
   const [metric, setMetric] = useState(24.8);
 
   useEffect(() => {
@@ -27,6 +20,8 @@ export function Hero() {
     return () => window.clearInterval(id);
   }, []);
 
+  const liveLine = content.liveTickerTemplate.replace("{metric}", metric.toFixed(1));
+
   return (
     <section className="relative min-h-[100dvh] overflow-hidden border-b border-line">
       <div className="grid min-h-[100dvh] lg:grid-cols-2">
@@ -35,11 +30,11 @@ export function Hero() {
           <div className="absolute inset-0 bg-gradient-to-br from-hot/25 via-transparent to-lime/10" />
           <div className="absolute inset-8 border border-line" />
           <div className="absolute top-1/2 left-1/2 w-[140%] -translate-x-1/2 -translate-y-1/2 rotate-[-12deg]">
-            <p className="display text-[18vw] leading-none text-hot/90 select-none">KILL</p>
-            <p className="display text-[14vw] leading-none text-paper/90 select-none">GROW</p>
+            <p className="display text-[18vw] leading-none text-hot/90 select-none">{content.posterWord1}</p>
+            <p className="display text-[14vw] leading-none text-paper/90 select-none">{content.posterWord2}</p>
           </div>
           <p className="mono absolute right-8 bottom-8 text-[10px] tracking-[0.2em] text-mute-on-dark uppercase">
-            LAB_00 // LIVE
+            {content.posterStatus}
           </p>
         </div>
 
@@ -49,7 +44,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             className="mono mb-6 text-[10px] tracking-[0.28em] text-hot uppercase"
           >
-            Ethical CRO laboratory — no hacks, no fake urgency
+            {content.eyebrow}
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
@@ -57,9 +52,7 @@ export function Hero() {
             transition={{ delay: 0.08 }}
             className="display text-[clamp(2.6rem,8vw,7.2rem)] text-paper"
           >
-            WE <span className="text-hot">KILL</span> HYPOTHESES.
-            <br />
-            WE <span className="text-hot">GROW</span> REVENUE.
+            {withAccentLines(content.headline, "text-hot")}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -67,9 +60,7 @@ export function Hero() {
             transition={{ delay: 0.16 }}
             className="mt-8 max-w-xl text-lg leading-8 text-mute-on-dark md:text-xl md:leading-9"
           >
-            Deceptive designs and extractive hacks are lazy. Most websites look pretty
-            and convert terribly. We treat your digital product like a laboratory.
-            Data over opinion. Statistically significant growth over artistic preferences.
+            {content.lead}
           </motion.p>
           <motion.div
             initial={{ opacity: 0 }}
@@ -77,24 +68,19 @@ export function Hero() {
             transition={{ delay: 0.24 }}
             className="mt-10 flex flex-wrap items-center gap-4"
           >
-            <MagneticButton href="#audit">Start An Experiment</MagneticButton>
+            <MagneticButton href={content.primaryCtaHref}>{content.primaryCtaLabel}</MagneticButton>
             <a
-              href="#manifesto"
+              href={content.secondaryCtaHref}
               className="mono border border-line px-6 py-3 text-[11px] tracking-[0.18em] uppercase text-paper hover:border-hot"
             >
-              Read the manifesto
+              {content.secondaryCtaLabel}
             </a>
           </motion.div>
         </div>
       </div>
 
       <div className="border-t border-line bg-void">
-        <Marquee
-          items={[
-            ...TICKER,
-            `[ A/B TEST RUNNING: +${metric.toFixed(1)}% CVR ]`,
-          ]}
-        />
+        <Marquee items={[...content.ticker, liveLine]} />
       </div>
     </section>
   );

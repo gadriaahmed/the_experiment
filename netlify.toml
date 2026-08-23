@@ -1,0 +1,8 @@
+# Netlify. Identity + Git Gateway must be enabled in the dashboard
+# (Site settings → Identity) for /admin to commit through git-gateway.
+#
+# This app uses the Next.js runtime (not `output: "export"`), so
+# headers() in next.config.ts is the CSP source of truth.
+
+[build]
+  command = "npm run build"
