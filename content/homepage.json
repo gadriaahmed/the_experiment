@@ -1,47 +1,4 @@
 {
-  "seo": {
-    "title": "The Experiment — CRO Consultancy",
-    "description": "We kill hypotheses. We grow revenue. A conversion rate optimisation laboratory that treats your digital product like an experiment — data over opinion, statistically significant growth over artistic preferences.",
-    "ogDescription": "Most websites look pretty and convert terribly. We run the lab that fixes that."
-  },
-  "skipLink": "Skip to main content",
-  "header": {
-    "logo": "THE_EXPERIMENT",
-    "logoAriaLabel": "The Experiment home",
-    "navAriaLabel": "Primary",
-    "mobileNavAriaLabel": "Mobile",
-    "openMenuLabel": "Open menu",
-    "closeMenuLabel": "Close menu",
-    "ctaLabel": "Start An Experiment",
-    "ctaHref": "#audit",
-    "nav": [
-      { "href": "#manifesto", "label": "Manifesto" },
-      { "href": "#method", "label": "Method" },
-      { "href": "#results", "label": "Results" },
-      { "href": "#audit", "label": "Audit" }
-    ]
-  },
-  "hero": {
-    "posterWord1": "KILL",
-    "posterWord2": "GROW",
-    "posterStatus": "LAB_00 // LIVE",
-    "eyebrow": "Ethical CRO laboratory — no hacks, no fake urgency",
-    "headline": "WE [[KILL]] HYPOTHESES.\nWE [[GROW]] REVENUE.",
-    "lead": "Deceptive designs and extractive hacks are lazy. Most websites look pretty and convert terribly. We treat your digital product like a laboratory. Data over opinion. Statistically significant growth over artistic preferences.",
-    "primaryCtaLabel": "Start An Experiment",
-    "primaryCtaHref": "#audit",
-    "secondaryCtaLabel": "Read the manifesto",
-    "secondaryCtaHref": "#manifesto",
-    "ticker": [
-      "A/B TEST RUNNING: +24.8% CVR",
-      "CHECKOUT VARIANT B: +18.2% RPV",
-      "LANDING PAGE: −22.4% BOUNCE",
-      "STAT SIG: 97.3% CONFIDENCE",
-      "PAID TRAFFIC: −31.0% CAC",
-      "HYPOTHESIS KILLED: H-014"
-    ],
-    "liveTickerTemplate": "[ A/B TEST RUNNING: +{metric}% CVR ]"
-  },
   "manifesto": {
     "id": "manifesto",
     "eyebrow": "01 // Anti-agency",
@@ -53,41 +10,6 @@
       "You don't need the big CRO agency. You need the [[right]] one. Research, design, build and analysis run directly — without the account-manager tax, the beer taps, or the retainer that only ever climbs."
     ],
     "closer": "Kill the hypothesis. Keep the revenue. Power to the users."
-  },
-  "principles": {
-    "eyebrow": "Be real and be likeable",
-    "title": "Optimise with [[integrity]] & grow with trust.",
-    "items": [
-      {
-        "icon": "microscope",
-        "title": "Out of Step",
-        "body": "Your funnel has problems (maybe). Some are fixable in a day. Some go deeper. We find them, rank them, test them, and kill the ones that fail."
-      },
-      {
-        "icon": "ban",
-        "title": "No More Heroes",
-        "body": "The industry runs on mystification — frameworks dressing up the same practice as proprietary method. We explain what we're doing and why."
-      },
-      {
-        "icon": "shield-off",
-        "title": "Ever been cheated?",
-        "body": "Fake urgency. Hidden opt-outs. Consent theatre. We identify every manipulative pattern, explain the cost, and propose replacements that still convert."
-      }
-    ]
-  },
-  "calculator": {
-    "id": "calculator",
-    "eyebrow": "02 // Simulator",
-    "title": "Run the numbers before you run the test.",
-    "lead": "Drag the sliders. A 15–30% conversion lift is the band we routinely hunt. No email gate. No theatre. Just the maths.",
-    "prompt": "root@lab:~$ simulate --lift 0.15:0.30",
-    "sessionLabel": "LIVE_SESSION",
-    "trafficLabel": "Monthly Traffic",
-    "cvrLabel": "Current Conversion Rate",
-    "aovLabel": "Average Order Value",
-    "baselineLabel": "Current monthly revenue",
-    "lift15Label": "+15% optimisation",
-    "lift30Label": "+30% optimisation"
   },
   "method": {
     "id": "method",
@@ -150,6 +72,92 @@
       }
     ]
   },
+  "calculator": {
+    "prompt": "root@lab:~$ simulate --lift 0.15:0.30",
+    "lift15Label": "+15% optimisation",
+    "eyebrow": "02 // Simulator",
+    "lift30Label": "+30% optimisation",
+    "aovLabel": "Average Order Value",
+    "baselineLabel": "Current monthly revenue",
+    "cvrLabel": "Current Conversion Rate",
+    "trafficLabel": "Monthly Traffic",
+    "title": "Run the numbers before you run the test.",
+    "id": "calculator",
+    "lead": "Drag the sliders. A 15–30% conversion lift is the band we routinely hunt. No email gate. No theatre. Just the maths.",
+    "sessionLabel": "LIVE_SESSION"
+  },
+  "straightTalk": {
+    "eyebrow": "FAQ // Straight talk",
+    "title": "Ethics [[first]] for results that [[last]].",
+    "lead": "If 'growth with integrity' sounds like marketing BS to you... good. Here is what we mean.",
+    "faqs": [
+      {
+        "q": "What does ethical optimisation mean here?",
+        "a": "Boosting conversions by removing pain and clarifying decisions — not by manipulating people. We will not ask you to ship anything you could not defend to a customer's face."
+      },
+      {
+        "q": "Won't this leave money on the table?",
+        "a": "In the shortest term you could squeeze a few extra sales by confusing people. Then you lose the ones who work out they have been had. The ethics-versus-results trade-off is a fiction sold by people whose model depends on hacks."
+      },
+      {
+        "q": "What if we ask for something you won't do?",
+        "a": "We will say why, then offer an alternative aimed at the same business goal. Fake countdown timers and hidden opt-outs are not a strategy. They are a confession."
+      },
+      {
+        "q": "Who do you partner with?",
+        "a": "Businesses that care whether customers come back. If you sell something useful and would rather grow through respect than through tricks, we will get on. If your model depends on misleading people, we are not the lab."
+      }
+    ]
+  },
+  "header": {
+    "logoAriaLabel": "The Experiment home",
+    "nav": [
+      {
+        "href": "#manifesto",
+        "label": "Manifesto"
+      },
+      {
+        "href": "#method",
+        "label": "Method"
+      },
+      {
+        "href": "#results",
+        "label": "Results"
+      },
+      {
+        "href": "#audit",
+        "label": "Audit"
+      }
+    ],
+    "ctaLabel": "Start An Experiment",
+    "navAriaLabel": "Primary",
+    "mobileNavAriaLabel": "Mobile",
+    "logo": "THE_EXPERIMENT",
+    "openMenuLabel": "Open menu",
+    "ctaHref": "#audit",
+    "closeMenuLabel": "Close menu"
+  },
+  "principles": {
+    "eyebrow": "Be real and be likeable",
+    "title": "Optimise with [[integrity]] & grow with trust.",
+    "items": [
+      {
+        "icon": "microscope",
+        "title": "Out of Step",
+        "body": "Your funnel has problems (maybe). Some are fixable in a day. Some go deeper. We find them, rank them, test them, and kill the ones that fail."
+      },
+      {
+        "icon": "ban",
+        "title": "No More Heroes",
+        "body": "The industry runs on mystification — frameworks dressing up the same practice as proprietary method. We explain what we're doing and why."
+      },
+      {
+        "icon": "shield-off",
+        "title": "Ever been cheated?",
+        "body": "Fake urgency. Hidden opt-outs. Consent theatre. We identify every manipulative pattern, explain the cost, and propose replacements that still convert."
+      }
+    ]
+  },
   "caseStudies": {
     "id": "results",
     "eyebrow": "04 // Lab results",
@@ -208,36 +216,62 @@
       }
     ]
   },
-  "straightTalk": {
-    "eyebrow": "FAQ // Straight talk",
-    "title": "Ethics [[first]] for results that [[last]].",
-    "lead": "If 'growth with integrity' sounds like marketing BS to you... good. Here is what we mean.",
-    "faqs": [
+  "skipLink": "Skip to main content",
+  "hero": {
+    "primaryCtaLabel": "Start An Experiment",
+    "secondaryCtaHref": "#manifesto",
+    "eyebrow": "Ethical CRO laboratory — no hacks, no fake urgency",
+    "ticker": [
+      "A/B TEST RUNNING: +24.8% CVR",
+      "CHECKOUT VARIANT B: +18.2% RPV",
+      "LANDING PAGE: −22.4% BOUNCE",
+      "STAT SIG: 97.3% CONFIDENCE",
+      "PAID TRAFFIC: −31.0% CAC",
+      "HYPOTHESIS KILLED: H-014"
+    ],
+    "liveTickerTemplate": "[ A/B TEST RUNNING: +{metric}% CVR ]",
+    "headline": "WE [[KILL]] HYPOTHESES.\nWE [[GROW]] REVENUE.",
+    "secondaryCtaLabel": "Read the manifesto",
+    "primaryCtaHref": "#audit",
+    "posterWord1": "KILL",
+    "posterWord2": "GROW",
+    "lead": "Deceptive designs and extractive hacks are lazy. Most websites look pretty and convert terribly. We treat your digital product like a laboratory. Data over opinion. Statistically significant growth over artistic preferences.",
+    "posterStatus": "LAB_00 // LIVE"
+  },
+  "footer": {
+    "marquee": [
+      "NO FAKE URGENCY",
+      "NO DARK PATTERNS",
+      "DATA OVER OPINION",
+      "KILL THE HYPOTHESIS",
+      "POWER TO THE USERS"
+    ],
+    "socials": [
       {
-        "q": "What does ethical optimisation mean here?",
-        "a": "Boosting conversions by removing pain and clarifying decisions — not by manipulating people. We will not ask you to ship anything you could not defend to a customer's face."
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com"
       },
       {
-        "q": "Won't this leave money on the table?",
-        "a": "In the shortest term you could squeeze a few extra sales by confusing people. Then you lose the ones who work out they have been had. The ethics-versus-results trade-off is a fiction sold by people whose model depends on hacks."
+        "label": "X / Twitter",
+        "href": "https://x.com"
       },
       {
-        "q": "What if we ask for something you won't do?",
-        "a": "We will say why, then offer an alternative aimed at the same business goal. Fake countdown timers and hidden opt-outs are not a strategy. They are a confession."
-      },
-      {
-        "q": "Who do you partner with?",
-        "a": "Businesses that care whether customers come back. If you sell something useful and would rather grow through respect than through tricks, we will get on. If your model depends on misleading people, we are not the lab."
+        "label": "lab@theexperiment.studio",
+        "href": "mailto:lab@theexperiment.studio"
       }
-    ]
+    ],
+    "clockLabel": "UTC clock",
+    "socialLabel": "Social",
+    "privacyLabel": "Privacy policy",
+    "tagline": "Most of the web is built to trick you. We're [[the other kind]].",
+    "privacyHref": "/privacy",
+    "wordmark": "THE EXPERIMENT",
+    "legalLabel": "Legal"
   },
   "audit": {
-    "id": "audit",
-    "eyebrow": "05 // Request an audit",
-    "title": "Start an experiment.",
-    "lead": "Send the URL. Tell us the bottleneck. We will tell you if we are the right lab — and if we are not, we will say so. If 'growth with integrity' sounds like marketing BS to you... good. That is the filter.",
+    "success": "Request queued. We will open the lab notes and reply from a human — not a sequence. Check your inbox.",
     "prompt": "audit.request --interactive",
-    "bottleneckLabel": "Primary bottleneck",
+    "eyebrow": "05 // Request an audit",
     "bottleneckPlaceholder": "Select a friction point",
     "bottlenecks": [
       "Checkout / payment",
@@ -247,8 +281,8 @@
       "Trust / deceptive patterns we inherited",
       "Not sure — that's the point of the audit"
     ],
-    "submitLabel": "Transmit audit request",
-    "success": "Request queued. We will open the lab notes and reply from a human — not a sequence. Check your inbox.",
+    "bottleneckLabel": "Primary bottleneck",
+    "title": "Start an experiment.",
     "fields": [
       {
         "id": "url",
@@ -273,27 +307,14 @@
         "placeholder": "you@company.com",
         "autoComplete": "email"
       }
-    ]
+    ],
+    "id": "audit",
+    "submitLabel": "Transmit audit request",
+    "lead": "Send the URL. Tell us the bottleneck. We will tell you if we are the right lab — and if we are not, we will say so. If 'growth with integrity' sounds like marketing BS to you... good. That is the filter."
   },
-  "footer": {
-    "marquee": [
-      "NO FAKE URGENCY",
-      "NO DARK PATTERNS",
-      "DATA OVER OPINION",
-      "KILL THE HYPOTHESIS",
-      "POWER TO THE USERS"
-    ],
-    "tagline": "Most of the web is built to trick you. We're [[the other kind]].",
-    "clockLabel": "UTC clock",
-    "legalLabel": "Legal",
-    "privacyLabel": "Privacy policy",
-    "privacyHref": "/privacy",
-    "socialLabel": "Social",
-    "socials": [
-      { "label": "LinkedIn", "href": "https://www.linkedin.com" },
-      { "label": "X / Twitter", "href": "https://x.com" },
-      { "label": "lab@theexperiment.studio", "href": "mailto:lab@theexperiment.studio" }
-    ],
-    "wordmark": "THE EXPERIMENT"
+  "seo": {
+    "title": "The Experiment — CRO Consultancy",
+    "description": "We kill the noise. We grow revenue. A conversion rate optimisation laboratory that treats your digital product like an experiment — data over opinion, statistically significant growth over artistic preferences.",
+    "ogDescription": "Most websites look pretty and convert terribly. We run the lab that fixes that."
   }
 }
